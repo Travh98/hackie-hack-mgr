@@ -55,8 +55,8 @@ full updated file after any changes. The file must follow this structure exactly
 State writing rules:
 
 - Always update "Last Updated" to the current time when writing
-- When a member starts a task: update their Team Members row AND add a started timestamp to the task entry
-- When a task completes: move it to Completed Tasks with timestamp, clear their Current Task and Task Started columns
+- When a member starts a task: update their Team Members row AND add a started timestamp to the task entry. Their previous task stays in Active Tasks — do NOT move it to Completed Tasks.
+- When a task completes: move it to Completed Tasks with timestamp, clear their Current Task and Task Started columns. Only do this when explicitly told the task is done.
 - Preserve all sections even if empty — use "_(none yet)_" as placeholder
 - Never delete a team member row — just clear their task columns when they finish
 - Discord ID is optional — use `—` as placeholder if unknown. When a known team member sends a message and their Discord ID is `—`, update it with the ID provided in the message context.
