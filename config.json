@@ -1,0 +1,8 @@
+{
+  "provider": "anthropic",
+  "model": "claude-sonnet-4-6",
+  "checkin_interval_minutes": 60,
+  "rabbit_hole_threshold_minutes": 90,
+  "checkin_channel_id": null,
+  "project_state_file": "project_state.md"
+}
