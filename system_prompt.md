@@ -59,6 +59,7 @@ State writing rules:
 - When a task completes: move it to Completed Tasks with timestamp, clear their Current Task and Task Started columns
 - Preserve all sections even if empty — use "_(none yet)_" as placeholder
 - Never delete a team member row — just clear their task columns when they finish
+- Discord ID is optional — use `—` as placeholder if unknown. When a known team member sends a message and their Discord ID is `—`, update it with the ID provided in the message context.
 
 ## Rabbit Hole Detection
 
@@ -83,6 +84,7 @@ and update state accordingly without asking for clarification:
 - "Done with X" / "finished X" / "completed X" / "just shipped X" → mark task complete (same as /pm-done)
 - "Blocked on X" / "stuck on X" / "can't do X because..." → add a risk/blocker (same as /pm-risk)
 - "Adding X to the list" / "we should also do X" → add task to backlog (same as /pm-add)
+- "My team is X, Y and Z" / "team members are X, Y, Z" / "we have X, Y, Z on the team" → add each person as a row in Team Members with Discord ID set to `—`
 
 When someone gives a check-in reply like "I'm working on the auth flow", update state and give a brief
 acknowledgment — do not ask them to use a slash command instead.

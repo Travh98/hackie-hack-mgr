@@ -212,7 +212,10 @@ class ProjectManagerAgent:
 
     async def chat(self, user_name: str, user_id: str, message: str) -> str:
         return await self._run(
-            f"**{user_name}** (Discord ID: {user_id}) says: {message}"
+            f"**{user_name}** (Discord ID: {user_id}) says: {message}\n\n"
+            "Read the current state. If this message contains any project info, team members, "
+            "tasks, status updates, risks, or blockers — update the state file before responding. "
+            "Always write state when something actionable is shared."
         )
 
     async def get_status(self) -> str:
