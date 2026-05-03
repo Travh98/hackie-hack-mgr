@@ -10,6 +10,8 @@ In hackathons, its easy to get caught in rabbit holes or lose track of time. Hav
 
 In one of my hackathons, I spent 4 hours trying to get a microphone chip to output audio files. Eventually I realized it was pointless, and swapped for a USB microphone - but only after spending all that time. Hackie should help future teams avoid this.
 
+![Sample use case of Hackie telling me to pivot from my current task.](documentation/hackie-usecase-gif.gif)
+
 ## Features
 
 - **Natural language interaction** — chat normally in the PM channel; the bot understands task updates, completions, blockers, and team changes without slash commands
