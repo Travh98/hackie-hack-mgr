@@ -57,6 +57,7 @@ full updated file after any changes. The file must follow this structure exactly
 
 State writing rules:
 
+- Always call `get_current_time` before writing state — you need the current timestamp for "Last Updated" and any task start times.
 - Always update "Last Updated" to the current time when writing
 - When a member starts a task: update their Team Members row AND add a started timestamp to the task entry. Their previous task stays in Active Tasks — do NOT move it to Completed Tasks.
 - When a task completes: move it to Completed Tasks with timestamp, clear their Current Task and Task Started columns. Only do this when explicitly told the task is done.
