@@ -36,6 +36,9 @@ class StateManager:
     def write(self, content: str) -> None:
         self.file_path.write_text(content, encoding="utf-8")
 
+    def reset(self) -> None:
+        self.file_path.write_text(DEFAULT_STATE, encoding="utf-8")
+
     def get_deadline(self) -> datetime | None:
         for line in self.read().splitlines():
             if line.startswith("**Deadline:**"):

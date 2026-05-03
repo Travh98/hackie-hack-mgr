@@ -153,6 +153,19 @@ async def on_message(message: discord.Message) -> None:
 
 # ── Slash commands ──────────────────────────────────────────────────────────────
 
+@bot.tree.command(name="pm-reset", description="Wipe the project state and start fresh")
+@app_commands.describe(confirm="Type 'yes' to confirm — this cannot be undone")
+async def pm_reset(interaction: discord.Interaction, confirm: str) -> None:
+    if confirm.strip().lower() != "yes":
+        await interaction.response.send_message("❌ Reset cancelled. Pass `yes` to confirm.", ephemeral=True)
+        return
+    agent.state.reset()
+    print("[reset] Project state wiped")
+    await interaction.response.send_message(
+        "🗑️ Project state wiped. Run `/pm-init` to start a new project."
+    )
+
+
 @bot.tree.command(name="pm-setchannel", description="Set this channel as the PM check-in channel")
 async def pm_setchannel(interaction: discord.Interaction) -> None:
     config["checkin_channel_id"] = str(interaction.channel_id)
