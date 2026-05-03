@@ -2,7 +2,7 @@
 Spot-check: would hackie have caught Travis's 4-hour microphone rabbit hole?
 
 Scenario: SoundSense hackathon, 5-person team, 2-day project.
-Travis has been on "Research microphone data acquisition from scratch" for 4 hours.
+Travis has been on "Get Microphone data working" for 4 hours.
 The rabbit hole threshold is 80 minutes.
 
 We inject that state and fire a check-in to see what hackie says.
@@ -50,7 +50,7 @@ def build_state(hours_on_task: float = 4.0) -> str:
 
 | Member  | Discord ID | Current Task                                        | Task Started         |
 | ------- | ---------- | --------------------------------------------------- | -------------------- |
-| Travis  | 111000001  | Research microphone data acquisition from scratch   | {task_started.strftime(fmt)} |
+| Travis  | 111000001  | Get Microphone data working   | {task_started.strftime(fmt)} |
 | Laksh  | 111000002  | Build caption overlay UI                            | {(now - timedelta(hours=1, minutes=20)).strftime(fmt)} |
 | Jake   | 111000003  | Integrate speech-to-text API                        | {(now - timedelta(minutes=45)).strftime(fmt)} |
 | Awassada     | 111000004  | 3D-print wearable enclosure                         | {(now - timedelta(hours=2)).strftime(fmt)} |
@@ -58,12 +58,12 @@ def build_state(hours_on_task: float = 4.0) -> str:
 
 ## Active Tasks
 
-- [ ] Research microphone data acquisition from scratch — _assigned: Travis_ | _started: {task_started.strftime(fmt)}_
+- [ ] Get Microphone data working — _assigned: Travis_ | _started: {task_started.strftime(fmt)}_
 - [ ] Build caption overlay UI — _assigned: Laksh_ | _started: {(now - timedelta(hours=1, minutes=20)).strftime(fmt)}_
 - [ ] Integrate speech-to-text API — _assigned: Jake_ | _started: {(now - timedelta(minutes=45)).strftime(fmt)}_
 - [ ] 3D-print wearable enclosure — _assigned: Awassada_ | _started: {(now - timedelta(hours=2)).strftime(fmt)}_
 - [ ] Write pitch deck — _assigned: Esha_ | _started: {(now - timedelta(minutes=30)).strftime(fmt)}_
-- [ ] Source USB microphone — _unassigned_
+- [ ] Add direction indicators — _unassigned_
 - [ ] End-to-end integration test — _unassigned_
 - [ ] Record demo video — _unassigned_
 

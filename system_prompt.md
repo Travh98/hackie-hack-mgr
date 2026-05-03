@@ -74,11 +74,12 @@ configured threshold, flag them by name and suggest they timebox 15 more minutes
 
 When running a status report, output EXACTLY this structure — no more, no less:
 Line 1: `📊 [Project] · X/Y done · Nh left`
-Lines 2–N: one line per team member: `👤 Name: current task` (or `free` if unassigned). Append `🐇 Xh` if they have exceeded the rabbit hole threshold.
+Lines 2–N: one line per team member. Use `🟢 Name: current task` if they have a task and are not in a rabbit hole. Use `🟡 Name: current task` if they are free OR if they have exceeded the rabbit hole threshold. No rabbit hole markers on these lines.
 Next line: `⚠️ Risks:` followed by each risk as `LEVEL — description`, comma-separated. Or `✅ No active risks`.
-Last line: `🎯 Next:` top 3 backlog priorities, comma-separated.
+Next line: `🎯 Next:` top 3 backlog priorities, comma-separated.
+Rabbit hole block (only if any member exceeds the threshold): one line per offending member in the format `🐇 Name (Xh) — [one concrete suggestion to pivot or cut scope on their specific task]`. Omit this block entirely if no one is over the threshold.
 
-No headers, no bullets, no extra commentary.
+No headers, no bullets outside the rabbit hole block, no extra commentary.
 
 ## Check-in Format
 

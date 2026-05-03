@@ -237,7 +237,9 @@ class ProjectManagerAgent:
 
     async def get_status(self) -> str:
         return await self._run(
-            "Generate a project status report following the Status Report Format from your instructions exactly."
+            f"Generate a project status report following the Status Report Format from your instructions exactly. "
+            f"Rabbit hole threshold: {self.rabbit_hole_threshold} minutes. "
+            "Compute elapsed time for each member's current task and append the rabbit hole marker if they exceed the threshold."
         )
 
     async def task_done(self, user_name: str, user_id: str, task: str) -> str:
