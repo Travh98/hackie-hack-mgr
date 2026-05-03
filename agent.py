@@ -48,7 +48,7 @@ full updated file after any changes. The file must follow this structure exactly
 - **LOW** Description of risk
 
 ## Notes
-- Freeform notes
+
 ---
 
 State writing rules:
@@ -233,12 +233,16 @@ class ProjectManagerAgent:
 
     def _process_tool(self, name: str, inputs: dict) -> str:
         if name == "read_project_state":
+            print("[tool] read_project_state")
             return self.state.read()
         if name == "write_project_state":
+            print("[tool] write_project_state")
             self.state.write(inputs["content"])
             return "State updated."
         if name == "get_current_time":
+            print("[tool] get_current_time")
             return datetime.now().strftime("%Y-%m-%d %H:%M")
+        print(f"[tool] unknown: {name}")
         return f"Unknown tool: {name}"
 
     async def _run(self, prompt: str) -> str:
