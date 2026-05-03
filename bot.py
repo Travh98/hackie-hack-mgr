@@ -137,18 +137,17 @@ async def on_message(message: discord.Message) -> None:
         await bot.process_commands(message)
         return
 
-    async with message.channel.typing():
-        try:
-            response = await agent.chat(
-                user_name=message.author.display_name,
-                user_id=str(message.author.id),
-                message=content,
-            )
-        except Exception as e:
-            response = f"❌ Agent error: {e}"
+    try:
+        await agent.chat(
+            user_name=message.author.display_name,
+            user_id=str(message.author.id),
+            message=content,
+        )
+        await message.add_reaction("🟦")
+    except Exception as e:
+        print(f"[chat error] {e}")
+        await message.add_reaction("❌")
 
-    chunks = split_message(response)
-    await send_chunks(message.channel, chunks, first_fn=message.reply)
     await bot.process_commands(message)
 
 
