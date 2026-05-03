@@ -93,6 +93,7 @@ class AnthropicBackend:
 
     async def run(self, prompt: str, process_tool_fn) -> str:
         messages = [{"role": "user", "content": prompt}]
+        total_in = total_out = total_cache_read = total_cache_write = 0
 
         for _ in range(10):
             response = await self.client.messages.create(
@@ -103,7 +104,14 @@ class AnthropicBackend:
                 messages=messages,
             )
 
+            u = response.usage
+            total_in += u.input_tokens
+            total_out += u.output_tokens
+            total_cache_read += getattr(u, "cache_read_input_tokens", 0) or 0
+            total_cache_write += getattr(u, "cache_creation_input_tokens", 0) or 0
+
             if response.stop_reason == "end_turn":
+                print(f"[tokens] in={total_in} out={total_out} cache_read={total_cache_read} cache_write={total_cache_write}")
                 for block in response.content:
                     if hasattr(block, "text"):
                         return block.text
@@ -124,6 +132,7 @@ class AnthropicBackend:
             else:
                 break
 
+        print(f"[tokens] in={total_in} out={total_out} cache_read={total_cache_read} cache_write={total_cache_write}")
         return "Agent stopped — max iterations reached."
 
 
@@ -138,6 +147,7 @@ class OpenAIBackend:
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": prompt},
         ]
+        total_in = total_out = total_cached = 0
 
         for _ in range(10):
             response = await self.client.chat.completions.create(
@@ -146,9 +156,15 @@ class OpenAIBackend:
                 messages=messages,
             )
 
+            u = response.usage
+            total_in += u.prompt_tokens
+            total_out += u.completion_tokens
+            total_cached += getattr(u.prompt_tokens_details, "cached_tokens", 0) or 0
+
             choice = response.choices[0]
 
             if choice.finish_reason == "stop":
+                print(f"[tokens] in={total_in} out={total_out} cached={total_cached}")
                 return choice.message.content or "Done."
 
             if choice.finish_reason == "tool_calls":
@@ -163,6 +179,7 @@ class OpenAIBackend:
             else:
                 break
 
+        print(f"[tokens] in={total_in} out={total_out} cached={total_cached}")
         return "Agent stopped — max iterations reached."
 
 
