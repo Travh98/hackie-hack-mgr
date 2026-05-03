@@ -1,3 +1,4 @@
+from datetime import datetime
 from pathlib import Path
 
 DEFAULT_STATE = """\
@@ -34,3 +35,13 @@ class StateManager:
 
     def write(self, content: str) -> None:
         self.file_path.write_text(content, encoding="utf-8")
+
+    def get_deadline(self) -> datetime | None:
+        for line in self.read().splitlines():
+            if line.startswith("**Deadline:**"):
+                raw = line.replace("**Deadline:**", "").strip()
+                try:
+                    return datetime.strptime(raw, "%Y-%m-%d %H:%M")
+                except ValueError:
+                    return None
+        return None

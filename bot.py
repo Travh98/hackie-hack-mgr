@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime
 import discord
 from discord import app_commands
 from discord.ext import commands
@@ -72,6 +73,14 @@ async def do_checkin() -> None:
     channel = bot.get_channel(int(channel_id))
     if not channel:
         return
+
+    deadline = agent.state.get_deadline()
+    if deadline and datetime.now() > deadline:
+        scheduler.remove_job("checkin")
+        print("[scheduler] Deadline passed — check-ins stopped")
+        await channel.send("🏁 The deadline has passed — check-ins are now stopped. Ship it!")
+        return
+
     try:
         response = await agent.checkin()
         for chunk in split_message(response):
