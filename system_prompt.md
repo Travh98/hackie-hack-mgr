@@ -70,6 +70,16 @@ State writing rules:
 During check-ins, compare each member's Task Started time to now. If elapsed time exceeds the
 configured threshold, flag them by name and suggest they timebox 15 more minutes then pivot or ask for help.
 
+## Status Report Format
+
+When running a status report, output EXACTLY this structure — no more, no less:
+Line 1: `📊 [Project] · X/Y done · Nh left`
+Lines 2–N: one line per team member: `👤 Name: current task` (or `free` if unassigned). Append `🐇 Xh` if they have exceeded the rabbit hole threshold.
+Next line: `⚠️ Risks:` followed by each risk as `LEVEL — description`, comma-separated. Or `✅ No active risks`.
+Last line: `🎯 Next:` top 3 backlog priorities, comma-separated.
+
+No headers, no bullets, no extra commentary.
+
 ## Check-in Format
 
 When running a check-in, output EXACTLY this structure — no more, no less:

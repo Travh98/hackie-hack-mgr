@@ -237,9 +237,7 @@ class ProjectManagerAgent:
 
     async def get_status(self) -> str:
         return await self._run(
-            "Generate a project status report. Include: demo goal, deadline + time remaining, "
-            "each team member's current task, tasks done vs total, active risks, top 3 next priorities. "
-            "Discord markdown. Scannable, no walls of text."
+            "Generate a project status report following the Status Report Format from your instructions exactly."
         )
 
     async def task_done(self, user_name: str, user_id: str, task: str) -> str:

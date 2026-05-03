@@ -51,18 +51,18 @@ def build_state(hours_on_task: float = 4.0) -> str:
 | Member  | Discord ID | Current Task                                        | Task Started         |
 | ------- | ---------- | --------------------------------------------------- | -------------------- |
 | Travis  | 111000001  | Research microphone data acquisition from scratch   | {task_started.strftime(fmt)} |
-| Jordan  | 111000002  | Build caption overlay UI                            | {(now - timedelta(hours=1, minutes=20)).strftime(fmt)} |
-| Priya   | 111000003  | Integrate speech-to-text API                        | {(now - timedelta(minutes=45)).strftime(fmt)} |
-| Sam     | 111000004  | 3D-print wearable enclosure                         | {(now - timedelta(hours=2)).strftime(fmt)} |
-| Morgan  | 111000005  | Write pitch deck                                    | {(now - timedelta(minutes=30)).strftime(fmt)} |
+| Laksh  | 111000002  | Build caption overlay UI                            | {(now - timedelta(hours=1, minutes=20)).strftime(fmt)} |
+| Jake   | 111000003  | Integrate speech-to-text API                        | {(now - timedelta(minutes=45)).strftime(fmt)} |
+| Awassada     | 111000004  | 3D-print wearable enclosure                         | {(now - timedelta(hours=2)).strftime(fmt)} |
+| Esha  | 111000005  | Write pitch deck                                    | {(now - timedelta(minutes=30)).strftime(fmt)} |
 
 ## Active Tasks
 
 - [ ] Research microphone data acquisition from scratch — _assigned: Travis_ | _started: {task_started.strftime(fmt)}_
-- [ ] Build caption overlay UI — _assigned: Jordan_ | _started: {(now - timedelta(hours=1, minutes=20)).strftime(fmt)}_
-- [ ] Integrate speech-to-text API — _assigned: Priya_ | _started: {(now - timedelta(minutes=45)).strftime(fmt)}_
-- [ ] 3D-print wearable enclosure — _assigned: Sam_ | _started: {(now - timedelta(hours=2)).strftime(fmt)}_
-- [ ] Write pitch deck — _assigned: Morgan_ | _started: {(now - timedelta(minutes=30)).strftime(fmt)}_
+- [ ] Build caption overlay UI — _assigned: Laksh_ | _started: {(now - timedelta(hours=1, minutes=20)).strftime(fmt)}_
+- [ ] Integrate speech-to-text API — _assigned: Jake_ | _started: {(now - timedelta(minutes=45)).strftime(fmt)}_
+- [ ] 3D-print wearable enclosure — _assigned: Awassada_ | _started: {(now - timedelta(hours=2)).strftime(fmt)}_
+- [ ] Write pitch deck — _assigned: Esha_ | _started: {(now - timedelta(minutes=30)).strftime(fmt)}_
 - [ ] Source USB microphone — _unassigned_
 - [ ] End-to-end integration test — _unassigned_
 - [ ] Record demo video — _unassigned_
@@ -97,7 +97,13 @@ async def run():
 
     print("[hackie] Running check-in...\n")
     response = await agent.checkin()
+    print("-" * 60)
+    print(response)
+    print("-" * 60)
 
+    print()
+    print("[hackie] Running status report...\n")
+    response = await agent.get_status()
     print("-" * 60)
     print(response)
     print("-" * 60)
