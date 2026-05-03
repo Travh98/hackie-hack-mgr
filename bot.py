@@ -51,9 +51,18 @@ config = load_config()
 intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
-agent = ProjectManagerAgent(config)
 scheduler = AsyncIOScheduler()
 _scheduler_started = False
+
+
+def restart_checkin(minutes: int) -> None:
+    if scheduler.get_job("checkin"):
+        scheduler.remove_job("checkin")
+    scheduler.add_job(do_checkin, "interval", minutes=minutes, id="checkin")
+    print(f"[scheduler] Check-in rescheduled to every {minutes} minute(s)")
+
+
+agent = ProjectManagerAgent(config, on_interval_change=restart_checkin)
 
 
 async def do_checkin() -> None:

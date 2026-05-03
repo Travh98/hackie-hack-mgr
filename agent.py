@@ -102,6 +102,20 @@ _TOOLS = [
         "description": "Get the current date and time as YYYY-MM-DD HH:MM.",
         "parameters": {"type": "object", "properties": {}, "required": []},
     },
+    {
+        "name": "set_checkin_interval",
+        "description": "Update how often the bot posts automatic check-ins. Call this when someone asks to change the standup/check-in frequency.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "minutes": {
+                    "type": "integer",
+                    "description": "New check-in interval in minutes",
+                }
+            },
+            "required": ["minutes"],
+        },
+    },
 ]
 
 
@@ -215,8 +229,9 @@ class OpenAIBackend:
 
 
 class ProjectManagerAgent:
-    def __init__(self, config: dict):
+    def __init__(self, config: dict, on_interval_change=None):
         self.config = config
+        self.on_interval_change = on_interval_change
         self.state = StateManager(config.get("project_state_file", "project_state.md"))
         self.rabbit_hole_threshold = config.get("rabbit_hole_threshold_minutes", 90)
 
@@ -242,6 +257,15 @@ class ProjectManagerAgent:
         if name == "get_current_time":
             print("[tool] get_current_time")
             return datetime.now().strftime("%Y-%m-%d %H:%M")
+        if name == "set_checkin_interval":
+            minutes = int(inputs["minutes"])
+            print(f"[tool] set_checkin_interval → {minutes} min")
+            self.config["checkin_interval_minutes"] = minutes
+            with open("config.json", "w") as f:
+                json.dump(self.config, f, indent=2)
+            if self.on_interval_change:
+                self.on_interval_change(minutes)
+            return f"Check-in interval updated to {minutes} minutes."
         print(f"[tool] unknown: {name}")
         return f"Unknown tool: {name}"
 

@@ -1,6 +1,6 @@
 {
   "provider": "openai",
-  "checkin_interval_minutes": 60,
+  "checkin_interval_minutes": 3,
   "rabbit_hole_threshold_minutes": 90,
   "checkin_channel_id": "1500566095067615412",
   "project_state_file": "project_state.md"
