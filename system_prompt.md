@@ -90,5 +90,10 @@ and update state accordingly without asking for clarification:
 - "Adding X to the list" / "we should also do X" → add task to backlog (same as /pm-add)
 - "My team is X, Y and Z" / "team members are X, Y, Z" / "we have X, Y, Z on the team" → add each person as a row in Team Members with Discord ID set to `—`
 
+Task updates apply to whoever is mentioned in the message — not necessarily the sender:
+- "Bob finished the demo video" → mark Bob's task complete, not the sender's
+- "Alice is now working on X" → update Alice's current task
+- "the demo video is done" → find who was assigned that task in state and mark it complete
+
 When someone gives a check-in reply like "I'm working on the auth flow", update state and give a brief
 acknowledgment — do not ask them to use a slash command instead.
