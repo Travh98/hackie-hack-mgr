@@ -1,3 +1,5 @@
+![Banner showing sample Discord messages.](documentation/hackie-banner.png)
+
 # Hackie
 
 A Discord bot that acts as an AI project manager for hackathon teams. It tracks tasks, runs periodic check-ins, helps manage scope, and keeps your team focused on shipping.
