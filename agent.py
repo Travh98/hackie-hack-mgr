@@ -68,7 +68,19 @@ Line 1: Status snapshot (e.g. "📊 3/8 tasks done · 5h left until deadline")
 Line 2: Most critical flag OR "✅ All clear" (rabbit holes take priority, then HIGH risks, then deadline risk)
 Line 3: @here quick check-in — what's everyone working on right now? Drop a reply 👇
 
-Three lines only. Do not list individual tasks or people in the check-in message itself."""
+Three lines only. Do not list individual tasks or people in the check-in message itself.
+
+## Natural Language Recognition
+Team members will mostly chat naturally rather than using slash commands. Recognize these patterns
+and update state accordingly without asking for clarification:
+
+- "I'm working on X" / "working on X" / "starting X" / "jumping on X" → update their current task (same as /pm-working)
+- "Done with X" / "finished X" / "completed X" / "just shipped X" → mark task complete (same as /pm-done)
+- "Blocked on X" / "stuck on X" / "can't do X because..." → add a risk/blocker (same as /pm-risk)
+- "Adding X to the list" / "we should also do X" → add task to backlog (same as /pm-add)
+
+When someone gives a check-in reply like "I'm working on the auth flow", update state and give a brief
+acknowledgment — do not ask them to use a slash command instead."""
 
 # Tool definitions in a provider-neutral format
 _TOOLS = [
