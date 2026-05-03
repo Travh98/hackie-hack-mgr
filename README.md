@@ -2,6 +2,12 @@
 
 A Discord bot that acts as an AI project manager for hackathon teams. It tracks tasks, runs periodic check-ins, helps manage scope, and keeps your team focused on shipping.
 
+## Why?
+
+In hackathons, its easy to get caught in rabbit holes or lose track of time. Having a simple, objective AI agent to ground the team during the hack would help save time and effort.
+
+In one of my hackathons, I spent 4 hours trying to get a microphone chip to output audio files. Eventually I realized it was pointless, and swapped for a USB microphone - but only after spending all that time. Hackie should help future teams avoid this.
+
 ## Features
 
 - **Natural language interaction** — chat normally in the PM channel; the bot understands task updates, completions, blockers, and team changes without slash commands
